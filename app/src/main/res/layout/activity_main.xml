@@ -20,10 +20,9 @@
             android:id="@+id/tvname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="Name:" />
+            android:text="Name:" />
 
         <EditText
             android:id="@+id/UserName"
@@ -69,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            >
 
             <TextView
                 android:id="@+id/tvage"
@@ -81,7 +80,7 @@
 
             <EditText
                 android:id="@+id/UserAge"
-                android:layout_width="114dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="age"
@@ -98,7 +97,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="15dp"
-        android:weightSum="20">
+        >
 
         <TextView
             android:id="@+id/tvheight"
@@ -106,16 +105,17 @@
             android:layout_height="wrap_content"
             android:text="Height:"
             android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/height"
-            android:layout_width="115dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="height"
+            android:inputType="numberDecimal"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -125,53 +125,44 @@
             android:background="@android:color/transparent"
             android:contextClickable="true"
             android:entries="@array/heightunits"
-            android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/heighttv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="15sp"
-
-            />
+             />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="30">
+        android:padding="15dp"
+       >
 
         <TextView
             android:id="@+id/tvWeight"
-            android:layout_width="93dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="10dp"
             android:text="Weight:"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/weight"
-            android:layout_width="116dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="weight"
-            android:padding="10dp"
-            android:textSize="20sp" />
+            android:inputType="numberDecimal"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/weightunits"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:entries="@array/weightunits"
-            android:padding="10dp" />
+             />
     </LinearLayout>
 
     <Button

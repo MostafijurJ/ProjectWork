@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         heightunits = findViewById(R.id.heightunits);
         weightunits = findViewById(R.id.weightunits);
         tvshowbmi = findViewById(R.id.tvshowbmi);
-        heightTv = findViewById(R.id.heighttv);
-
 
         bmibtn.setOnClickListener(this);
     }
