@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BMI Calculations</string>
+    <string-array name="heightunits">
+        <item>cm</item>
+        <item>foot</item>
+    </string-array>
+
+    <string-array name="weightunits">
+        <item>Kg</item>
+        <item>lbs</item>
+    </string-array>
+    <string-array name="SEX">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
+
+</resources>
