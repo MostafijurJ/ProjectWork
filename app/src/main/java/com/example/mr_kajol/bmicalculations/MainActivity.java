@@ -2,8 +2,10 @@ package com.example.mr_kajol.bmicalculations;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+
+import static java.lang.Math.floor;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
      Spinner heightunits;
      Spinner weightunits;
+     Spinner genderspiner;
+
+     int heightindex, weightindex,genderindex;
+     Double heightincm, weightinkg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,42 +54,90 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         heightunits = findViewById(R.id.heightunits);
         weightunits = findViewById(R.id.weightunits);
+        genderspiner = findViewById(R.id.genderspiner);
 
 
         bmibtn.setOnClickListener(this);
+
+        // GENDER
+        ArrayAdapter<CharSequence> gender = ArrayAdapter.createFromResource(this,R.array.SEX, android.R.layout.simple_spinner_item);
+        gender.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        genderspiner.setAdapter(gender);
+
+
+        //Height
+        ArrayAdapter<CharSequence> heightadepter = ArrayAdapter.createFromResource(this,R.array.heightunits, android.R.layout.simple_spinner_item);
+        heightadepter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        heightunits.setAdapter(heightadepter);
+
+        // Weight
+        ArrayAdapter<CharSequence> weightadepter = ArrayAdapter.createFromResource(this,R.array.weightunits, android.R.layout.simple_spinner_item);
+        weightadepter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        weightunits.setAdapter(weightadepter);
+
+
+        weightunits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+               //Toast.makeText(MainActivity.this," Weight", Toast.LENGTH_LONG).show();
+
+               weightindex = position;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
+        heightunits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                 heightindex = position;
+                //Toast.makeText(MainActivity.this,"Height", Toast.LENGTH_LONG).show();
+              /*  String a = height.getText().toString();
+                if(!TextUtils.isEmpty(a)){
+                    Double Height = Double.parseDouble(height.getText().toString());
+                     ck = (Height * 30.48);
+                }*/
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
     }
+
 
     @Override
     public void onClick(View v) {
 
         try {
-            Double Height = Double.parseDouble(height.getText().toString());
-            Double Weight = Double.parseDouble(weight.getText().toString());
+             Double Height = Double.parseDouble(height.getText().toString());
+             Double Weight = Double.parseDouble(weight.getText().toString());
 
-            String HeighUnit, WeightUnit;
+             //for height
+           if(heightindex == 0){
+               heightincm = (Height); }
+           else if(heightindex == 1){
+               double temp, fractional,last;
+               temp = floor(Height);
+               fractional = (Height - temp)*10;
+                      heightincm = (temp * 30.48)+ (fractional * 2.54);
 
-            double bmi, temp, check;
+                      Toast.makeText(MainActivity.this, "fractional"+heightincm,Toast.LENGTH_LONG).show();
+           }
+               // for weight
+            if(weightindex == 0){
+                weightinkg = (Weight); }
+            else if(weightindex == 1){
+                weightinkg = (Weight * 0.453592); }
 
-      /*  if(HeighUnit.contains("foot")){
-             double a;
-             a =  30.48;
-             Height = Height * a;
-            Toast.makeText(MainActivity.this, "This is Foot.", Toast.LENGTH_LONG).show();
-        }
+            double bmi, temp, check=1;
 
-        bmi level
-
-                Very severely underweight  0-15
-                Severely underweight 15 -16
-                Underweight	 16 -18.5
-                Normal (healthy weight) 18.5 -25
-                Overweight 25 - 30
-
-*/
-            temp = Height / 100;
+            temp = heightincm / 100;
             check = temp * temp;
-            bmi = (Weight / check);
-            String dc = new DecimalFormat("##.##").format(bmi);
+            bmi = (weightinkg / check);
+          String dc = new DecimalFormat("##.##").format(bmi);
             tvshowbmi.setText("Your BMI is : " + dc);
 
             ///bmi status
@@ -135,4 +191,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return 6;
   }
+
 }
