@@ -75,6 +75,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weightadepter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         weightunits.setAdapter(weightadepter);
 
+        genderspiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                //Toast.makeText(MainActivity.this," Gender ", Toast.LENGTH_LONG).show();
+
+                genderindex = position;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
 
         weightunits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,11 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                  heightindex = position;
                 //Toast.makeText(MainActivity.this,"Height", Toast.LENGTH_LONG).show();
-              /*  String a = height.getText().toString();
-                if(!TextUtils.isEmpty(a)){
-                    Double Height = Double.parseDouble(height.getText().toString());
-                     ck = (Height * 30.48);
-                }*/
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -122,9 +130,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                double temp, fractional,last;
                temp = floor(Height);
                fractional = (Height - temp)*10;
+               // i inch = 2.54 cm  1 foot = 30.48 cm
                       heightincm = (temp * 30.48)+ (fractional * 2.54);
-
-                      Toast.makeText(MainActivity.this, "fractional"+heightincm,Toast.LENGTH_LONG).show();
+                      //Toast.makeText(MainActivity.this, "fractional"+heightincm,Toast.LENGTH_LONG).show();
            }
                // for weight
             if(weightindex == 0){
